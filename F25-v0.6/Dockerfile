@@ -1,8 +1,24 @@
 FROM fedora:25
 
-RUN dnf install -y git make gcc gcc-gfortran gcc-c++ python  \
-        perl wget curl m4 patch xz bzip2 \
-        cmake pkgconfig which findutils
+RUN dnf install -y \
+    bzip \
+    cmake \
+    curl \
+    findutils \
+    gcc \
+    gcc-c++ \
+    gcc-gfortran \
+    git \
+    m4 \
+    make \
+    patch \
+    perl \
+    pkgconfig \
+    python \
+    wget \
+    which \
+    xz \
+    && dnf clean all
 
 RUN cd /tmp && \
     git clone https://github.com/JuliaLang/julia.git && \
@@ -17,4 +33,4 @@ RUN cd /tmp && \
 
 ENV PATH /opt/julia/0.6/bin:$PATH
 
-# CMD ["julia"]
+ENTRYPOINT ["julia"]
